@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
+    <ProjectReference Include="..\Challenge.Trinca.Application\Challenge.Trinca.Application.csproj" />
+    <ProjectReference Include="..\Challenge.Trinca.Infrastructure\Challenge.Trinca.Infrastructure.csproj" />
+    <ProjectReference Include="..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
+    <ProjectReference Include="..\Challenge.Trinca.Presentation\Challenge.Trinca.Presentation.csproj" />
+  </ItemGroup>
+
+</Project>
