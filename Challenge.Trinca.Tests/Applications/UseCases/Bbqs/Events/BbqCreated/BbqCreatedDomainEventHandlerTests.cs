@@ -6,6 +6,7 @@ using Challenge.Trinca.Domain.DomainEvents.Bbqs;
 using Challenge.Trinca.Domain.Repositories;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Events.BbqCreated;
 
@@ -14,10 +15,11 @@ public sealed class BbqCreatedDomainEventHandlerTests
     private readonly BbqCreatedDomainEventHandler _sut;
     private readonly Mock<IPeopleRepository> _peopleRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public BbqCreatedDomainEventHandlerTests()
     {
-        _sut = new BbqCreatedDomainEventHandler(_peopleRepository.Object, _unitOfWork.Object);
+        _sut = new BbqCreatedDomainEventHandler(_peopleRepository.Object, _unitOfWork.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should add invite to all co-owners")]

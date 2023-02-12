@@ -9,7 +9,7 @@ public static class GetPeopleInvitesQueryFixture
     {
         return new GetPeopleInvitesQuery
         {
-            PersonId = CommonPeopleFixture.GetPeopleId().ToString()
+            PeopleId = CommonPeopleFixture.GetPeopleId().ToString()
         };
     }
 }

@@ -8,7 +8,7 @@ public sealed class PeopleEndpointConfiguration
     private const string DeclinePrefix = "decline";
 
     public const string InviteIdParam = "inviteId";
-    public const string PersonIdHeaderName = "personId";
+    public const string PeopleIdHeaderName = "personId";
 
     public const string GetPeopleInvites = $"{RoutePrefix}/{InvitePrefix}";
     public const string ConfirmInvite = $"{RoutePrefix}/{InvitePrefix}/{{{InviteIdParam}}}/{AcceptPrefix}";

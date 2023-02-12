@@ -9,14 +9,14 @@ public sealed class InviteMappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<(string personId, string inviteId, InviteRequest request), ConfirmInviteCommand>()
+        config.NewConfig<(string peopleId, string inviteId, InviteRequest request), ConfirmInviteCommand>()
             .Map(dest => dest.IsVeg, src => src.request.IsVeg)
-            .Map(dest => dest.PersonId, src => src.personId)
+            .Map(dest => dest.PeopleId, src => src.peopleId)
             .Map(dest => dest.InviteId, src => src.inviteId);
 
-        config.NewConfig<(string personId, string inviteId, InviteRequest request), DeclineInviteCommand>()
+        config.NewConfig<(string peopleId, string inviteId, InviteRequest request), DeclineInviteCommand>()
             .Map(dest => dest.IsVeg, src => src.request.IsVeg)
-            .Map(dest => dest.PersonId, src => src.personId)
+            .Map(dest => dest.PeopleId, src => src.peopleId)
             .Map(dest => dest.InviteId, src => src.inviteId);
     }
 }

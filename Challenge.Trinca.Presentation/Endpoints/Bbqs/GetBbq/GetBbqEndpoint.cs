@@ -28,7 +28,7 @@ public sealed class GetBbqEndpoint : ApiEndpoint
     public override async Task HandleAsync(CancellationToken ct)
     {
         var personIdKvp = HttpContext.Request.Headers
-            .FirstOrDefault(x => x.Key.Equals(PeopleEndpointConfiguration.PersonIdHeaderName));
+            .FirstOrDefault(x => x.Key.Equals(PeopleEndpointConfiguration.PeopleIdHeaderName));
 
         var personId = personIdKvp.Value.FirstOrDefault();
         var bbqId = Route<string>(BbqEndpointConfiguration.BbqIdParam);

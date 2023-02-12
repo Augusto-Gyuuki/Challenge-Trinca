@@ -8,6 +8,7 @@ using Challenge.Trinca.Domain.DomainEvents.Peoples;
 using Challenge.Trinca.Domain.Repositories;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Peoples.Events.InviteDeclined;
 
@@ -16,10 +17,11 @@ public sealed class InviteDeclinedDomainEventHandlerTests
     private readonly InviteDeclinedDomainEventHandler _sut;
     private readonly Mock<IBbqRepository> _bbqRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public InviteDeclinedDomainEventHandlerTests()
     {
-        _sut = new InviteDeclinedDomainEventHandler(_unitOfWork.Object, _bbqRepository.Object);
+        _sut = new InviteDeclinedDomainEventHandler(_unitOfWork.Object, _bbqRepository.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should update the value of the guest IsAttending prop to false")]

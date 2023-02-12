@@ -10,9 +10,10 @@ using FastEndpoints.Swagger;
 var builder = WebApplication.CreateBuilder(args);
 {
     var appSettings = builder.Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+    var elasticConfiguration = builder.Configuration.GetSection(nameof(ElasticConfiguration)).Get<ElasticConfiguration>();
 
     builder.Services
-        .AddWeb()
+        .AddWeb(appSettings, elasticConfiguration)
         .AddPersistance(appSettings.CosmosDbSettings)
         .AddApplication()
         .AddPresentation()

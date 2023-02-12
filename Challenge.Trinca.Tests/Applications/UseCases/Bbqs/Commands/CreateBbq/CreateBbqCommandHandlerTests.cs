@@ -4,6 +4,7 @@ using Challenge.Trinca.Domain.AggregatesRoot.BbqAggregateRoot;
 using Challenge.Trinca.Domain.AggregatesRoot.BbqAggregateRoot.ValueObjects.Enums;
 using Challenge.Trinca.Domain.Repositories;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Commands.CreateBbq;
 
@@ -12,10 +13,11 @@ public sealed class CreateBbqCommandHandlerTests
     private readonly CreateBbqCommandHandler _sut;
     private readonly Mock<IBbqRepository> _bbqRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public CreateBbqCommandHandlerTests()
     {
-        _sut = new CreateBbqCommandHandler(_bbqRepository.Object, _unitOfWork.Object);
+        _sut = new CreateBbqCommandHandler(_bbqRepository.Object, _unitOfWork.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should create new bbq")]

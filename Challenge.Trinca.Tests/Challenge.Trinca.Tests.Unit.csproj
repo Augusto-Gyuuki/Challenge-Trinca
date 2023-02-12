@@ -1,37 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Bogus" Version="34.0.2" />
-    <PackageReference Include="FluentAssertions" Version="6.8.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
-    <PackageReference Include="Moq" Version="4.18.3" />
-    <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
-    <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="3.1.2">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="FluentAssertions" Version="6.8.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+		<PackageReference Include="Moq" Version="4.18.3" />
+		<PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
+		<PackageReference Include="xunit" Version="2.4.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="coverlet.collector" Version="3.1.2">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
-    <ProjectReference Include="..\Challenge.Trinca.Application\Challenge.Trinca.Application.csproj" />
-    <ProjectReference Include="..\Challenge.Trinca.Domain\Challenge.Trinca.Domain.csproj" />
-    <ProjectReference Include="..\Challenge.Trinca.Infrastructure\Challenge.Trinca.Infrastructure.csproj" />
-    <ProjectReference Include="..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
-    <ProjectReference Include="..\Challenge.Trinca.Presentation\Challenge.Trinca.Presentation.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
+		<ProjectReference Include="..\Challenge.Trinca.Application\Challenge.Trinca.Application.csproj" />
+		<ProjectReference Include="..\Challenge.Trinca.Domain\Challenge.Trinca.Domain.csproj" />
+		<ProjectReference Include="..\Challenge.Trinca.Infrastructure\Challenge.Trinca.Infrastructure.csproj" />
+		<ProjectReference Include="..\Challenge.Trinca.Presentation\Challenge.Trinca.Presentation.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -5,6 +5,7 @@ using Challenge.Trinca.Domain.AggregatesRoot.PeopleAggregateRoot.ValueObjects.En
 using Challenge.Trinca.Domain.Repositories;
 using ErrorOr;
 using MediatR;
+using Serilog;
 
 namespace Challenge.Trinca.Application.UseCases.Peoples.Commands.ConfirmInvite;
 
@@ -12,31 +13,39 @@ public sealed class ConfirmInviteCommandHandler : IRequestHandler<ConfirmInviteC
 {
     private readonly IPeopleRepository _peopleRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ILogger _logger;
 
-    public ConfirmInviteCommandHandler(IPeopleRepository peopleRepository, IUnitOfWork unitOfWork)
+    public ConfirmInviteCommandHandler(IPeopleRepository peopleRepository, IUnitOfWork unitOfWork, ILogger logger)
     {
         _peopleRepository = peopleRepository;
         _unitOfWork = unitOfWork;
+        _logger = logger;
     }
 
     public async Task<ErrorOr<InviteModelResult>> Handle(ConfirmInviteCommand request, CancellationToken cancellationToken)
     {
+        _logger.Information("Initialize confirm invite {ConfirmInviteCommand}", request);
+
         var people = await _peopleRepository.GetByIdAsync(
-            Guid.Parse(request.PersonId),
+            Guid.Parse(request.PeopleId),
             cancellationToken);
 
         if (people is null)
         {
+            _logger.Error("People not found with ID: {PeopleId}", request.PeopleId);
             return PeopleErrors.PeopleNotFound;
         }
+        _logger.Information("People found with ID: {PeopleId} and Name: {PeopleName}", request.PeopleId, people.Name);
 
         var invite = people.Invites
             .FirstOrDefault(x => x.Id.Equals(Guid.Parse(request.InviteId)));
 
         if (invite is null)
         {
+            _logger.Error("Invite not found with ID: {InviteId}", request.InviteId);
             return PeopleErrors.InviteNotFound;
         }
+        _logger.Information("Invite found with ID: {InviteId}", request.InviteId);
 
         if (!invite.Status.Equals(InviteStatus.Accepted))
         {
@@ -45,6 +54,7 @@ public sealed class ConfirmInviteCommandHandler : IRequestHandler<ConfirmInviteC
 
         await _peopleRepository.UpdateAsync(people);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+        _logger.Information("People with ID: {PeopleId} updated on database", request.PeopleId);
 
         return InviteModelResult.FromInvite(invite);
     }

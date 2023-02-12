@@ -4,10 +4,16 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>28e413cc-c1c0-4426-92bf-ca0505f2433d</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Challenge.Trinca.Application\Challenge.Trinca.Application.csproj" />
     <ProjectReference Include="..\Challenge.Trinca.Infrastructure\Challenge.Trinca.Infrastructure.csproj" />
     <ProjectReference Include="..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />

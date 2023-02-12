@@ -7,6 +7,7 @@ using Challenge.Trinca.Domain.DomainEvents.Bbqs;
 using Challenge.Trinca.Domain.Repositories;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Events.BbqDenied;
 
@@ -15,10 +16,11 @@ public sealed class BbqDeniedDomainEventHandlerTests
     private readonly BbqDeniedDomainEventHandler _sut;
     private readonly Mock<IPeopleRepository> _peopleRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public BbqDeniedDomainEventHandlerTests()
     {
-        _sut = new BbqDeniedDomainEventHandler(_peopleRepository.Object, _unitOfWork.Object);
+        _sut = new BbqDeniedDomainEventHandler(_peopleRepository.Object, _unitOfWork.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should decline all remaining invitations")]

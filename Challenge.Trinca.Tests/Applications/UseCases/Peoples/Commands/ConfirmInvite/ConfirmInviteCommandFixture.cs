@@ -9,7 +9,7 @@ public static class ConfirmInviteCommandFixture
     {
         return new ConfirmInviteCommand
         {
-            PersonId = CommonPeopleFixture.GetPeopleId().ToString(),
+            PeopleId = CommonPeopleFixture.GetPeopleId().ToString(),
             InviteId = CommonPeopleFixture.GetPeopleId().ToString(),
             IsVeg = CommonPeopleFixture.GetRandomBool(),
         };

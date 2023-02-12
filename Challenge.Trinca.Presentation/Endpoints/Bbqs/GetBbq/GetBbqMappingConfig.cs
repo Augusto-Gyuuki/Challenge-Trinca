@@ -7,8 +7,8 @@ public sealed class GetBbqMappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<(string personId, string bbqId), GetBbqQuery>()
-            .Map(dest => dest.PersonId, src => src.personId)
+        config.NewConfig<(string peopleId, string bbqId), GetBbqQuery>()
+            .Map(dest => dest.PeopleId, src => src.peopleId)
             .Map(dest => dest.BbqId, src => src.bbqId);
     }
 }

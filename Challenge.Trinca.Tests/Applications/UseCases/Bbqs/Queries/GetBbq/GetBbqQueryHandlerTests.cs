@@ -4,6 +4,7 @@ using Challenge.Trinca.Domain.AggregatesRoot.BbqAggregateRoot.Errors;
 using Challenge.Trinca.Domain.AggregatesRoot.PeopleAggregateRoot.Errors;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Queries.GetBbq;
 
@@ -12,10 +13,11 @@ public sealed class GetBbqQueryHandlerTests
     private readonly GetBbqQueryHandler _sut;
     private readonly Mock<IBbqRepository> _bbqRepository = new();
     private readonly Mock<IPeopleRepository> _peopleRepository = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public GetBbqQueryHandlerTests()
     {
-        _sut = new GetBbqQueryHandler(_bbqRepository.Object, _peopleRepository.Object);
+        _sut = new GetBbqQueryHandler(_bbqRepository.Object, _peopleRepository.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should return bbq when people is co-owner")]
@@ -38,7 +40,7 @@ public sealed class GetBbqQueryHandlerTests
         var getBbqQuery = new GetBbqQuery
         {
             BbqId = bbqExample.Id.ToString(),
-            PersonId = peopleExample.Id.ToString(),
+            PeopleId = peopleExample.Id.ToString(),
         };
 
         _bbqRepository.Setup(x => x.GetByIdAsync(bbqExample.Id, It.IsAny<CancellationToken>()))
@@ -76,7 +78,7 @@ public sealed class GetBbqQueryHandlerTests
         var getBbqQuery = new GetBbqQuery
         {
             BbqId = bbqExample.Id.ToString(),
-            PersonId = peopleExample.Id.ToString(),
+            PeopleId = peopleExample.Id.ToString(),
         };
 
         _bbqRepository.Setup(x => x.GetByIdAsync(bbqExample.Id, It.IsAny<CancellationToken>()));
@@ -111,7 +113,7 @@ public sealed class GetBbqQueryHandlerTests
         var getBbqQuery = new GetBbqQuery
         {
             BbqId = bbqExample.Id.ToString(),
-            PersonId = peopleExample.Id.ToString(),
+            PeopleId = peopleExample.Id.ToString(),
         };
 
         _peopleRepository.Setup(x => x.GetByIdAsync(peopleExample.Id, It.IsAny<CancellationToken>()))
@@ -139,7 +141,7 @@ public sealed class GetBbqQueryHandlerTests
         var getBbqQuery = new GetBbqQuery
         {
             BbqId = Guid.NewGuid().ToString(),
-            PersonId = peopleExample.Id.ToString(),
+            PeopleId = peopleExample.Id.ToString(),
         };
 
         _peopleRepository.Setup(x => x.GetByIdAsync(peopleExample.Id, It.IsAny<CancellationToken>()));

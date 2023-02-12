@@ -5,6 +5,7 @@ using Challenge.Trinca.Domain.AggregatesRoot.PeopleAggregateRoot.ValueObjects.En
 using Challenge.Trinca.Domain.Repositories;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Peoples.Commands.DeclineInvite;
 
@@ -13,10 +14,11 @@ public sealed class DeclineInviteCommandHandlerTests
     private readonly DeclineInviteCommandHandler _sut;
     private readonly Mock<IPeopleRepository> _peopleRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public DeclineInviteCommandHandlerTests()
     {
-        _sut = new DeclineInviteCommandHandler(_peopleRepository.Object, _unitOfWork.Object);
+        _sut = new DeclineInviteCommandHandler(_peopleRepository.Object, _unitOfWork.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should decline people invite")]
@@ -30,7 +32,7 @@ public sealed class DeclineInviteCommandHandlerTests
 
         var declineInviteCommand = new DeclineInviteCommand
         {
-            PersonId = peopleExample.Id.ToString(),
+            PeopleId = peopleExample.Id.ToString(),
             InviteId = inviteExample.Id.ToString(),
             IsVeg = CommonPeopleFixture.GetRandomBool()
         };
@@ -88,7 +90,7 @@ public sealed class DeclineInviteCommandHandlerTests
 
         var declineInviteCommand = new DeclineInviteCommand
         {
-            PersonId = peopleExample.Id.ToString(),
+            PeopleId = peopleExample.Id.ToString(),
             InviteId = CommonPeopleFixture.GetPeopleId().ToString(),
             IsVeg = CommonPeopleFixture.GetRandomBool()
         };

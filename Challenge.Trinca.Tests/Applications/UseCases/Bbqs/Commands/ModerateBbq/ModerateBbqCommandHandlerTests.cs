@@ -5,6 +5,7 @@ using Challenge.Trinca.Domain.AggregatesRoot.BbqAggregateRoot.ValueObjects.Enums
 using Challenge.Trinca.Domain.Repositories;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Commands.ModerateBbq;
 
@@ -13,10 +14,11 @@ public sealed class ModerateBbqCommandHandlerTests
     private readonly ModerateBbqCommandHandler _sut;
     private readonly Mock<IBbqRepository> _bbqRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public ModerateBbqCommandHandlerTests()
     {
-        _sut = new ModerateBbqCommandHandler(_bbqRepository.Object, _unitOfWork.Object);
+        _sut = new ModerateBbqCommandHandler(_bbqRepository.Object, _unitOfWork.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should update the status of the bbq to PendingConfirmations and IsTrincaPaying to true")]

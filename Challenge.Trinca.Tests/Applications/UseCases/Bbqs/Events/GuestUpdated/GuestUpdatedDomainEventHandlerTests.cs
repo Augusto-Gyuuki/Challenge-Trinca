@@ -7,6 +7,7 @@ using Challenge.Trinca.Domain.DomainEvents.Bbqs;
 using Challenge.Trinca.Domain.Repositories;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Events.GuestUpdated;
 
@@ -15,10 +16,11 @@ public sealed class GuestUpdatedDomainEventHandlerTests
     private readonly GuestUpdatedDomainEventHandler _sut;
     private readonly Mock<IBbqRepository> _bbqRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public GuestUpdatedDomainEventHandlerTests()
     {
-        _sut = new GuestUpdatedDomainEventHandler(_unitOfWork.Object, _bbqRepository.Object);
+        _sut = new GuestUpdatedDomainEventHandler(_unitOfWork.Object, _bbqRepository.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should update the bbqStatus to BbqStatus.Confirmed")]

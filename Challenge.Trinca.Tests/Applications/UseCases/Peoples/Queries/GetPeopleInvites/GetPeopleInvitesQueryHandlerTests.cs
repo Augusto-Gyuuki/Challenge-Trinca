@@ -3,6 +3,7 @@ using Challenge.Trinca.Application.UseCases.Peoples.Queries.GetPeopleInvites;
 using Challenge.Trinca.Domain.AggregatesRoot.PeopleAggregateRoot.Errors;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Peoples.Queries.GetPeopleInvites;
 
@@ -11,10 +12,11 @@ public sealed class GetPeopleInvitesQueryHandlerTests
     private readonly GetPeopleInvitesQueryHandler _sut;
     private readonly Mock<IPeopleRepository> _peopleRepository = new();
     private readonly Mock<IBbqRepository> _bbqRepository = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public GetPeopleInvitesQueryHandlerTests()
     {
-        _sut = new GetPeopleInvitesQueryHandler(_peopleRepository.Object, _bbqRepository.Object);
+        _sut = new GetPeopleInvitesQueryHandler(_peopleRepository.Object, _bbqRepository.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should return people when valid query is given")]

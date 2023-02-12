@@ -4,9 +4,9 @@ using MediatR;
 
 namespace Challenge.Trinca.Application.UseCases.Peoples.Commands.DeclineInvite;
 
-public sealed class DeclineInviteCommand : IRequest<ErrorOr<InviteModelResult>>
+public sealed record DeclineInviteCommand : IRequest<ErrorOr<InviteModelResult>>
 {
-    public string PersonId { get; init; } = string.Empty;
+    public string PeopleId { get; init; } = string.Empty;
 
     public string InviteId { get; init; } = string.Empty;
 

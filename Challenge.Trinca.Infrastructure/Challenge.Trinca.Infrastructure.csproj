@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
     <ProjectReference Include="..\Challenge.Trinca.Application\Challenge.Trinca.Application.csproj" />
     <ProjectReference Include="..\Challenge.Trinca.Persistence\Challenge.Trinca.Persistence.csproj" />
   </ItemGroup>

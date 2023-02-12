@@ -8,6 +8,7 @@ using Challenge.Trinca.Domain.DomainEvents.Bbqs;
 using Challenge.Trinca.Domain.Repositories;
 using Challenge.Trinca.Tests.Unit.BaseFixtures;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Events.BbqApproved;
 
@@ -17,10 +18,11 @@ public sealed class BbqApprovedDomainEventHandlerTests
     private readonly Mock<IBbqRepository> _bbqRepository = new();
     private readonly Mock<IPeopleRepository> _peopleRepository = new();
     private readonly Mock<IUnitOfWork> _unitOfWork = new();
+    private readonly Mock<ILogger> _logger = new();
 
     public BbqApprovedDomainEventHandlerTests()
     {
-        _sut = new BbqApprovedDomainEventHandler(_peopleRepository.Object, _unitOfWork.Object, _bbqRepository.Object);
+        _sut = new BbqApprovedDomainEventHandler(_peopleRepository.Object, _unitOfWork.Object, _bbqRepository.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should add invite to all workers")]

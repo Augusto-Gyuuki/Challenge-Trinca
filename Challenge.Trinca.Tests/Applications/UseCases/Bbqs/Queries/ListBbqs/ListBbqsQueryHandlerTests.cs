@@ -2,6 +2,7 @@
 using Challenge.Trinca.Application.UseCases.Bbqs.Common.Searchable;
 using Challenge.Trinca.Application.UseCases.Bbqs.Queries.ListBbqs;
 using Moq;
+using Serilog;
 
 namespace Challenge.Trinca.Tests.Unit.Applications.UseCases.Bbqs.Queries.ListBbqs;
 
@@ -9,10 +10,11 @@ public sealed class ListBbqsQueryHandlerTests
 {
     private readonly Mock<IBbqRepository> _bbqRepository = new();
     private readonly ListBbqsQueryHandler _sut;
+    private readonly Mock<ILogger> _logger = new();
 
     public ListBbqsQueryHandlerTests()
     {
-        _sut = new ListBbqsQueryHandler(_bbqRepository.Object);
+        _sut = new ListBbqsQueryHandler(_bbqRepository.Object, _logger.Object);
     }
 
     [Fact(DisplayName = "Handle() should return a list of bbqs")]

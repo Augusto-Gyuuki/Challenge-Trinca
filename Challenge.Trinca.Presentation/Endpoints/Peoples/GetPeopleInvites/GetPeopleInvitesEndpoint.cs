@@ -27,16 +27,15 @@ public sealed class GetPeopleInvitesEndpoint : ApiEndpoint
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        var personIdKvp = HttpContext.Request.Headers
-            .FirstOrDefault(x => x.Key.Equals(PeopleEndpointConfiguration.PersonIdHeaderName));
+        var peopleIdKvp = HttpContext.Request.Headers
+            .FirstOrDefault(x => x.Key.Equals(PeopleEndpointConfiguration.PeopleIdHeaderName));
 
-        var personId = personIdKvp.Value.FirstOrDefault();
+        var peopleId = peopleIdKvp.Value.FirstOrDefault();
 
         var getPeopleInvitesQuery = new GetPeopleInvitesQuery()
         {
-            PersonId = personId
+            PeopleId = peopleId
         };
-
 
         var getPeopleInvitesResult = await _mediator.Send(getPeopleInvitesQuery, ct);
 

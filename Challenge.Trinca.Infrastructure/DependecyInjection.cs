@@ -23,7 +23,6 @@ public static class DependecyInjection
         service.AddQuartz(config =>
         {
             var jobKey = new JobKey(nameof(ProcessOutboxMessageJob));
-
             config.AddJob<ProcessOutboxMessageJob>(jobKey)
                   .AddTrigger(trigger =>
                   {

@@ -28,7 +28,7 @@ public sealed class DeclineInviteEndpoint : ApiEndpoint<InviteRequest>
     public override async Task HandleAsync(InviteRequest request, CancellationToken ct)
     {
         var personIdKvp = HttpContext.Request.Headers
-            .FirstOrDefault(x => x.Key.Equals(PeopleEndpointConfiguration.PersonIdHeaderName));
+            .FirstOrDefault(x => x.Key.Equals(PeopleEndpointConfiguration.PeopleIdHeaderName));
 
         var personId = personIdKvp.Value.FirstOrDefault();
         var inviteId = Route<string>(PeopleEndpointConfiguration.InviteIdParam);
