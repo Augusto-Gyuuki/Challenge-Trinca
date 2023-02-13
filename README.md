@@ -1,6 +1,6 @@
 # Challenge.Trinca
 
-Este arquivo contém as configurações para a integração com o Azure Cosmos DB e as configurações para a mensagem de outbox.
+appSettings.json contém as configurações para a integração com o Azure Cosmos DB e as configurações para a mensagem de outbox.
 
 ## CosmosDbSettings
 
